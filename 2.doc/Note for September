@@ -58,7 +58,32 @@ ret = sscanf(buffer, "%s", input);
 
 也就是说sscanf就是把buffer里面的值读到变量中
 
- 
+6.打开关闭
+
+```
+int main(){
+    FILE *stream1 = NULL;
+    FILE *stream2 = NULL;
+
+    stream1 = fopen("1.txt", "a+");
+    if(stream1 == NULL)
+    {
+        printf("Error opening file 1.txt\n");
+        return 1;
+    }else {
+        printf("File 1.txt opened successfully.\n");
+    }
+
+    if(fclose(stream1) == EOF) {
+        printf("Error closing file 1.txt\n");
+        return 1;
+
+    } 
+    return 0;
+}
+```
+
+
 
 
 
