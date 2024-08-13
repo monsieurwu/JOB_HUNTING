@@ -1,0 +1,64 @@
+# Note for Sep.
+
+1.sizeof包含最后的'\0' strlen不包含
+
+2.atoi atof 注意输入的字符串需要时十进制数字 正负号 或是以空格开头的十进制数 不能是字母或是其他字符
+
+3.使用strcpy或者strncpy的时候 记得在后面手动添加终止符 这样才能安全的复制 不会缓冲区溢出（Buffer Overflow）
+
+```c
+    // 使用 sizeof - 1，确保不会溢出目标缓冲区
+    size_t max_length = sizeof(destination) - 1;
+    strncpy(destination, source, max_length);
+    destination[max_length] = '\0';  // 手动添加终止符
+    printf("Destination (small): %s\n", destination);
+```
+
+也可以这么写
+
+```
+strncpy(string, string2, strlen(string2));
+strncat((string, string2, strlen(string2));)
+```
+
+3.strcmp依次比较两个字符串的ascii码; strncmp依次比较两个字符串的前n个字符
+
+4.查找字符串需要这样使用
+
+```c
+    char *pdest;
+    pdest = strstr(string3, string2);
+    if (pdest!= NULL) {
+        printf("String1 found at position: %ld\n", pdest - string3);
+    } else {
+        printf("String1 not found in string2.\n");
+    }
+```
+
+5.写入和读出字符串
+
+```
+ ret = sprintf(buffer, "input: hello world");
+ ret = sscanf(buffer, "input: %s", input);
+```
+
+sprintf的ret返回的是写入buffer了多少个字符 打印buffer的话是打印出来input: hello world
+
+sscanf的ret返回的是成功地根据格式字符串匹配并提取的字段数，如果用 `sscanf` 读取了一个整数和一个字符串，并且这两个值都被正确解析并存储，那么返回值将是 `2`。如果解析到一个就是1 如果没解析到就是0.
+
+input打印出来是hello
+
+而且必须格式一样才能解析得到 也就是说buffer里面🉐有一个inputs： 不然解析不到
+
+当然也可以不要加任何限定 input就是buffer里的第一个字符串
+
+```
+ret = sscanf(buffer, "%s", input);
+```
+
+也就是说sscanf就是把buffer里面的值读到变量中
+
+ 
+
+
+
