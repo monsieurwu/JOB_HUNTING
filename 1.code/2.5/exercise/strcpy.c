@@ -20,6 +20,4 @@ void strcpy1(char *str1, char *str2)
         str2++;
     }
     *str1 = '\0';  // append null terminator to the copied string
-
-
 }

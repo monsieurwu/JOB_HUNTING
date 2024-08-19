@@ -184,6 +184,11 @@ int main(){
 1996.5.30
 ```
 
+如果文件中有多个匹配项：
+
+- `fscanf` 只会读取**第一个**与格式匹配的项，然后返回。
+- 文件指针会移动到匹配项之后的第一个字符位置，这意味着，如果再调用 `fscanf`，它会从上一次读取结束的地方继续向后查找。
+
 11.输入26个字母到字符数组
 
 ```c
@@ -245,5 +250,17 @@ void strcpy1(char *str1, char *str2)
         if(c == '\n')
             n++;
     }
+```
+
+16.取时间戳和local time
+
+```c
+#include<time.h>
+	time_t seconds;
+    seconds = time(NULL);
+    struct tm *p_time;
+    p_time = localtime(&seconds);
+	printf("Current date: %d-%d-%d \n", 1900 + p_time->tm_year, 1 + p_time->tm_mon, p_time->tm_mday);
+    printf("Current time: %d:%d:%d \n", p_time->tm_hour, p_time->tm_min, p_time->tm_sec);
 ```
 

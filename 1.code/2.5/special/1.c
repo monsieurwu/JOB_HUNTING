@@ -8,13 +8,14 @@ int main(){
     int times = 0;
     time_t seconds;
     struct tm *p_time;
-    if ((stream1 = fopen("2.txt", "a+")) == NULL)
+
+    if ((stream1 = fopen("5.txt", "a+")) == NULL)
     {
-        printf("D:\\test\\date.txt 打开失败\n");
+        printf("open failed\n");
         return -1;
     }
-    else
-        printf("D:\\test\\date.txt 打开成功\n");
+    else 
+        printf("open successed\n");
     
 
     //format read

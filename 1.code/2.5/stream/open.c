@@ -14,8 +14,6 @@ int main(){
         printf("File 1.txt opened successfully.\n");
     }
 
-
-
     if(fclose(stream1) == EOF) {
         printf("Error closing file 1.txt\n");
         return 1;

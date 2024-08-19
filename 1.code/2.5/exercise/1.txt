@@ -1,23 +1,5 @@
-#include<stdio.h>
-
-void strcpy1(char *str1, char *str2);
-int main(){
-
-    char str1[10] = {0};
-    char str2[] = "Hello";
-
-    strcpy1(str1, str2);
-    printf("str1: %s\n", str1);
-    
-    return 0;
-}
-
-void strcpy1(char *str1, char *str2)
-{
-    while(*str2!= '\0'){
-        *str1 = *str2;
-        str1++;
-        str2++;
-    }
-    *str1 = '\0';  // append null terminator to the copied string
-}
+# 2024-8-16 16:23:56 # 1th run of the program #
+# 2024-8-16 16:23:57 # 2th run of the program #
+# 2024-8-16 16:23:59 # 3th run of the program #
+# 2024-8-16 16:24:14 # 4th run of the program #
+# 2024-8-16 16:24:16 # 5th run of the program #
