@@ -12,7 +12,7 @@
 
 **投递-->面试-->面试复盘-->优化建立内容-->投递**
 
-![image-20240819160849971](/home/wujw/workspace/JOB_HUNTING/2.doc/assets/image-20240819160849971.png)
+![image-20240819160849971](/home/wujw/workspace/JOB_HUNTING/2.doc/Note_for_preparation.assets/image-20240819160849971.png)
 
 
 

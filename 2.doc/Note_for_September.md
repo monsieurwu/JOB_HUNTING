@@ -264,3 +264,52 @@ void strcpy1(char *str1, char *str2)
     printf("Current time: %d:%d:%d \n", p_time->tm_hour, p_time->tm_min, p_time->tm_sec);
 ```
 
+17.window上查看文件<io.h>
+
+通过文件返回句柄和文件信息结构体
+
+通过句柄查看下一个文件的文件信息结构体
+
+关闭句柄
+
+```c
+    struct _finddata_t c_file;
+    intptr_t hFile;
+    int i= 0;
+    if((hFile = _findfirst("test\\*", &c_file)) == -1);
+    {
+        printf("_findfirst error\n");
+        return -1;
+    }
+    do {
+
+
+    } while(_findnext(hFile, &c_file) == 0);
+
+    _findclose(hFile);
+```
+
+循环的地方可以用于判断文件属性 文件名字 文件大小 创建和写入时间
+
+```c
+        printf("%d.name: %s\n", i++, c_file.name);
+
+        printf("readonly file: %s\n", (c_file.attrib & _A_RDONLY) ? "Yes" : "No");
+        printf("hidden file: %s\n", (c_file.attrib & _A_HIDDEN) ? "Yes" : "No");
+        printf("system file: %s\n", (c_file.attrib & _A_SYSTEM) ? "Yes" : "No");
+        printf("directory file: %s\n", (c_file.attrib & _A_SUBDIR) ? "Yes" : "No");
+        printf("size of file: %d\n", c_file.size);
+
+        struct tm *p_time;
+        
+        p_time = localtime(&c_file.time_create);
+        printf("creat time: %d-%d-%d %d:%d:%d\n", 
+            1900+p_time->tm_year, 1+p_time->tm_mon, p_time->tm_mday, p_time->tm_hour, p_time->tm_min, p_time->tm_sec);
+
+        p_time = localtime(&c_file.time_write);
+        printf("last write time: %d-%d-%d %d:%d:%d\n", 
+            1900+p_time->tm_year, 1+p_time->tm_mon, p_time->tm_mday, p_time->tm_hour, p_time->tm_min, p_time->tm_sec);
+
+        printf("-----------------------------------------------------\n");
+```
+

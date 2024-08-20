@@ -18,6 +18,7 @@ int main(void)
     }
     else
         printf("D:\\test\\date.txt 打开成功\n");
+        
     //一直读到最后一行的内容
     while ((ret = fscanf(stream, "# %d-%d-%d %d:%d:%d # %dth run of the program #\n",
             &year, &month, &day, &hour, &min, &sec, &times)) > 0) 
