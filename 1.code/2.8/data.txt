@@ -1,0 +1,48 @@
+#include<stdio.h>
+
+
+int count_file_line(const char *path);
+int main() {
+    int count;
+
+    count =count_file_line("data.txt");
+
+    printf("data.txt: %d\n", count);
+
+
+    return 0;
+}
+
+int count_file_line(const char *path)
+{
+    FILE *stream = NULL;
+    char c;
+    int n, prev_line;
+    
+    if((stream = fopen(path, "a+")) == NULL)
+    {
+        printf("error occured\n");
+        return -1;
+    }
+    else {
+        printf("successed in open\n");
+    }
+
+    while((c = fgetc(stream)) != EOF)
+    {
+        if(c == '\n')
+            n++;
+        prev_line = c;
+
+    }
+
+    if(prev_line == '\0')
+        n++;
+
+    if(fclose(stream) == EOF)
+    {
+        printf("error occured in close");
+        return -1;
+    }
+    return 0;
+}
