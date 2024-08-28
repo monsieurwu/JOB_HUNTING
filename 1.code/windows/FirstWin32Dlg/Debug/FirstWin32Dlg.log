@@ -1,0 +1,17 @@
+﻿生成启动时间为 2024/8/26 21:13:04。
+     1>项目“D:\woowoowoo\JOB_HUNTING\1.code\windows\FirstWin32Dlg\FirstWin32Dlg.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\FirstWin32Dlg.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt FirstWin32Dlg.cpp
+         FirstWin32Dlg.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\FirstWin32Dlg.res" FirstWin32Dlg.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\woowoowoo\JOB_HUNTING\1.code\windows\FirstWin32Dlg\Debug\FirstWin32Dlg.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\woowoowoo\JOB_HUNTING\1.code\windows\FirstWin32Dlg\Debug\FirstWin32Dlg.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\woowoowoo\JOB_HUNTING\1.code\windows\FirstWin32Dlg\Debug\FirstWin32Dlg.lib" /MACHINE:X86 Debug\FirstWin32Dlg.res
+         Debug\FirstWin32Dlg.obj
+         Debug\stdafx.obj
+         FirstWin32Dlg.vcxproj -> D:\woowoowoo\JOB_HUNTING\1.code\windows\FirstWin32Dlg\Debug\FirstWin32Dlg.exe
+     1>已完成生成项目“D:\woowoowoo\JOB_HUNTING\1.code\windows\FirstWin32Dlg\FirstWin32Dlg.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:00.65

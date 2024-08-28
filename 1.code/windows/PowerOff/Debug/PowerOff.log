@@ -1,0 +1,15 @@
+﻿Build started 2024/8/9 22:49:49.
+     1>Project "D:\woowoowoo\keyan_2\windows\PowerOff\PowerOff.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt mian.c
+         mian.c
+     1>d:\woowoowoo\keyan_2\windows\poweroff\mian.c(12): warning C4047: 'function': 'DWORD' differs in levels of indirection from 'void *'
+     1>d:\woowoowoo\keyan_2\windows\poweroff\mian.c(12): warning C4024: 'AdjustTokenPrivileges': different types for formal and actual parameter 4
+       Link:
+         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.lib" /MACHINE:X86 Debug\mian.obj
+         PowerOff.vcxproj -> D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.exe
+     1>Done Building Project "D:\woowoowoo\keyan_2\windows\PowerOff\PowerOff.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.82
