@@ -1,0 +1,10 @@
+total 24
+drwxrwxr-x 3 wujw wujw 4096 aug 28 10:54 example1
+-rw-rw-r-- 1 wujw wujw   18 aug 28 09:53 example2.txt
+-rw-rw-r-- 1 wujw wujw   92 aug 28 11:24 example.txt
+-rw-rw-r-- 1 wujw wujw    0 aug 28 12:08 file.txt
+drwxrwxr-x 2 wujw wujw 4096 aug 28 11:48 my_dir
+-rw-rw-r-- 1 wujw wujw   64 aug 28 11:18 sort_example.txt
+-rw-rw-r-- 1 wujw wujw  986 aug 28 09:54 system_log.txt
+-rw-rw-r-- 1 wujw wujw    0 aug 28 11:38 woowoowoo
+New line from echo

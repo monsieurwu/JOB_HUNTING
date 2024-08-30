@@ -1,0 +1,12 @@
+2024-02-23 10:15:32 - INFO - User "john_doe" logged in from 9.67.116.99:0.
+2024-02-23 10:18:45 - INFO - User "joe_bloggs" registered passed.
+a024-02-23 10:18:47 - Error - Invalid phone number format detected. Phone number: +8615551234567.
+b024-02-23 10:21:59 - WARNING - Potential security threat detected from IP address 192.168.1.100. User: "admin".
+2024-02-23 10:25:12 - INFO - User "jane_smith" updated email address to "jane.smith@example.com".
+2024-02-23 10:27:45 - ERROR - User "jane_smith" failed to changed password to smith_654321.
+
+
+2024-02-23 10:30:02 - INFO - User "john_doe" initiated password 12345678 reset request. Email: john.doe@example.com.
+2024-02-23 10:33:21 - WARNING - Unusual_activity detected for user "jane_smith". Phone number: +8613329876543.
+2024-02-23 10:36:45 - ERROR - ai User "joe_bloggs" is passing deactivated account in 939.222.12.0.
+2024-02-23 10:39:59 - INFO - User "admin" updated profile information. but the phone number is valid : 10008675309

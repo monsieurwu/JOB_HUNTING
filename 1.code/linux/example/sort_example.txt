@@ -1,0 +1,11 @@
+100
+123
+456
+apple
+apple
+apple
+Apple
+banana
+banana
+Banana
+orange

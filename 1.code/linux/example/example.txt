@@ -1,0 +1,11 @@
+apple:12
+banana:1
+banana:2
+Apple:33
+apple:0
+123:3
+orange:77
+100:6
+apple:5
+456:1001
+Banana:7
