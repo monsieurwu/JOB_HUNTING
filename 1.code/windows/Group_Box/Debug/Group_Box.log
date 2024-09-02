@@ -1,0 +1,22 @@
+﻿生成启动时间为 2024/8/31 16:07:51。
+     1>项目“D:\JOB_HUNTING\1.code\windows\Group_Box\Group_Box.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\Group_Box.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Group_Box.cpp
+         Group_Box.cpp
+     1>d:\job_hunting\1.code\windows\group_box\group_box.cpp(34): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_wstdio.h(1444): note: 参见“_swprintf”的声明
+     1>d:\job_hunting\1.code\windows\group_box\group_box.cpp(40): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_wstdio.h(1444): note: 参见“_swprintf”的声明
+     1>d:\job_hunting\1.code\windows\group_box\group_box.cpp(11): warning C4101: “h”: 未引用的局部变量
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\Group_Box.res" Group_Box.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\JOB_HUNTING\1.code\windows\Group_Box\Debug\Group_Box.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\JOB_HUNTING\1.code\windows\Group_Box\Debug\Group_Box.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\JOB_HUNTING\1.code\windows\Group_Box\Debug\Group_Box.lib" /MACHINE:X86 Debug\Group_Box.res
+         Debug\Group_Box.obj
+         Debug\stdafx.obj
+         Group_Box.vcxproj -> D:\JOB_HUNTING\1.code\windows\Group_Box\Debug\Group_Box.exe
+     1>已完成生成项目“D:\JOB_HUNTING\1.code\windows\Group_Box\Group_Box.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:00.77
