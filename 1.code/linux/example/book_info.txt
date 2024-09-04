@@ -1,0 +1,6 @@
+The C Programming Language, 第2版, 9787111128069, Brian W.Kernighan & Dennis M.Ritchie, 机械工业出版社, 22.90
+C Programming: A Modern Approach, 第2版, 9787115565198, K.N.King, 人民邮电出版社, 102.50
+C Primer Plus, 第6版, 9787115521637, Stephen Prata, 人民邮电出版社, 54.00
+clear C language Introduction, 第3版, 9787115404824, BohYoh Shibata, 人民邮电出版社, 44.50
+pointers on c, 第1版, 9787115522689, Kenneth Reek, 人民邮电出版社, 49.50
+Expert C Programming, 第1版, 9787115521323, Peter Van Der Linden, 人民邮电出版社, 60.00
