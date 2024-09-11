@@ -7,6 +7,7 @@ void print_numbers(int count, ...)
 	va_start(args,count);
 	printf("参数%d个:", count);
 	for(i =0;i< count;i++){
+        printf("%d", );
 		value = va_arg(args,int);
 		printf("%d ", value);
     }
