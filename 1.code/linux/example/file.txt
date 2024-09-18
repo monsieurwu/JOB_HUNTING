@@ -1,10 +1,19 @@
-total 24
+total 64
+-rw-rw-r-- 1 wujw wujw  494 sep  4 11:04 array.awk
+-rw-rw-r-- 1 wujw wujw  311 sep  3 15:41 assoarray.awk
+-rw-rw-r-- 1 wujw wujw  579 sep  4 11:24 book_info.txt
+-rw-rw-r-- 1 wujw wujw  899 sep  4 11:27 book_stat.awk
 drwxrwxr-x 3 wujw wujw 4096 aug 28 10:54 example1
 -rw-rw-r-- 1 wujw wujw   18 aug 28 09:53 example2.txt
 -rw-rw-r-- 1 wujw wujw   92 aug 28 11:24 example.txt
--rw-rw-r-- 1 wujw wujw    0 aug 28 12:08 file.txt
+-rw-rw-r-- 1 wujw wujw    0 sep  9 17:16 file.txt
+drwxrwxr-x 2 wujw wujw 4096 sep  3 10:03 log_level
 drwxrwxr-x 2 wujw wujw 4096 aug 28 11:48 my_dir
+-rw-rw-r-- 1 wujw wujw   34 aug 29 15:00 regex_test.txt
+-rw-rw-r-- 1 wujw wujw  206 sep  3 15:25 script_2.awk
+-rw-rw-r-- 1 wujw wujw  246 sep  3 11:40 script.awk
 -rw-rw-r-- 1 wujw wujw   64 aug 28 11:18 sort_example.txt
--rw-rw-r-- 1 wujw wujw  986 aug 28 09:54 system_log.txt
+-rw-rw-r-- 1 wujw wujw  986 sep  3 11:32 system_log.txt
+-rw-rw-r-- 1 wujw wujw  413 sep  3 10:16 users.txt
 -rw-rw-r-- 1 wujw wujw    0 aug 28 11:38 woowoowoo
-New line from echo
+drwxrwxr-x 2 wujw wujw 4096 aug 28 15:52 xargs_test
