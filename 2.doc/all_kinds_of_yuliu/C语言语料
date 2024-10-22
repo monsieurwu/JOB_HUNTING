@@ -37,3 +37,57 @@ int main() {
 
 
 2.函数在 `array[]` 数组作参数时 通常把数组长度传入函数 因为传入的数组实际上是一个指针sizeof（array）得到的是指针的大小 而不是数组的大小
+
+
+
+3.从键盘读入年份和这一年的第几天，计算这天是几月几日。注意闰年的计算，可以使用二维数组保存每月天数进行计算。
+
+```c
+#include <stdio.h>
+
+int main() {
+    int year, month, day_of_year;
+    int is_leap_year;
+    int days[2][12] = {{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, 
+                      {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}} ;
+
+    printf("Enter year: ");
+    scanf("%d", &year); 
+    printf("Enter day: ");
+    scanf("%d", &day_of_year);
+
+    is_leap_year = (year % 4 == 0 && year % 100!=0) || (year % 400 == 0);
+
+    month = 0;
+    while (day_of_year > days[is_leap_year][month]) {
+        day_of_year -= days[is_leap_year][month++];
+    }
+    printf("%d-%02d-%02d\n", year, month + 1, day_of_year);  // Month is 1-indexed.
+
+    return 0;
+}
+```
+
+重点：
+
+- 判断闰年
+
+```c
+is_leap_year = (year % 4 == 0 && year % 100!=0) || (year % 400 == 0);
+```
+
+- 二维数组构建
+
+```c
+int days[2][12] = {{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, 
+                      {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}} ;
+```
+
+- 算月和日
+
+```c
+while (day_of_year > days[is_leap_year][month]) {
+        day_of_year -= days[is_leap_year][month++];
+    }
+```
+
