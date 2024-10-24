@@ -1,18 +1,24 @@
-// City
+// 构造方法
 public class Main {
     public static void main(String[] args) {
-        City bj = new City();
-        bj.name = "Beijing";
-        bj.latitude = 39.903;
-        bj.longitude = 116.401;
-        System.out.println(bj.name);
-        System.out.println("location: " + bj.latitude + ", " + bj.longitude);
+        Person p = new Person(); // 编译错误:找不到这个构造方法
     }
 }
 
-class City {
-    String name;
-    double latitude;
-    double longitude;
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
     
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
 }
