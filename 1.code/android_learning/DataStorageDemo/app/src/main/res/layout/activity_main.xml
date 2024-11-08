@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <Button
+        android:onClick="innerWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="innerWrite"/>
+
+    <Button
+        android:onClick="innerRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="innerRead"/>
+
+    <Button
+        android:onClick="outerWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="outerWrite"/>
+
+    <Button
+        android:onClick="outerRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="outerRead"/>
+
+    <Button
+        android:onClick="spWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SPWrite"/>
+
+    <Button
+        android:onClick="spRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SPRead"/>
+
+    <Button
+        android:onClick="toSQLite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SQLite"/>
+
+
+</LinearLayout>
