@@ -9,7 +9,7 @@ int main() {
     while ((c = getchar()) != EOF)
     {
         if (c >= '0' && c <= '9')
-            n_digit[c - '0']++;
+            ++n_digit[c - '0'];
         else if (c == ' ')
             n_space++;
         else if (c == '\n')
@@ -17,7 +17,7 @@ int main() {
         else
             n_other++;
     }
-    for(i = 0; i < 0; i++)
+    for(i = 0; i < 10; i++)
     {
         printf("Number %d: %d times\n", i, n_digit[i]);
     }
