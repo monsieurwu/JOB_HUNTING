@@ -313,3 +313,131 @@ void strcpy1(char *str1, char *str2)
         printf("-----------------------------------------------------\n");
 ```
 
+
+
+
+
+
+
+
+
+1.指针指向的内容不可修改
+
+```
+const int *p = &x;
+int const *p = &x;
+```
+
+这两个是等价的 p指向的内容不可更改 但是p本身可以更改
+
+```
+int *const p;
+```
+
+这样才是指针本身不可更改
+
+```
+int const * const p = &x;
+```
+
+这样就是指针本身与指向内容均不可修改
+
+2.指针指向数组做遍历
+
+```c
+int score[] = {2, 3, 4, 5};
+int *p = NULL;
+for(p = score; p < score+4; p++)
+{
+	printf("%d:%d\n", i++, *p);
+}
+```
+
+3.数组作为函数参数
+
+```
+void calc_scores(int scores[]， int scores_length);
+void calc_scores(int scores[5]， int scores_length);
+void calc_scores(int *scores)， int scores_length;
+```
+
+这三种写法是等价的， 通常都会带上数组长度
+
+4.用指针指向字符串
+
+```c
+char *str = "hello world";
+```
+
+用数组下标或是取值运算符都是可以的
+
+但不能对字符串进行修改 因为字符串是只读的常量
+
+```c
+const char *str = "hello world";
+```
+
+为避免意外修改字符串 导致crash 用const修饰
+
+5.字符串常量和字符串变量
+
+```
+char *str = "hello world";
+char str[] = "hello world";
+```
+
+`char *str = "hello world";`：指针可以指向其他字符串，但内容不可变。
+
+`char str[] = "hello world";`：数组内容可修改，但数组本身不可指向其他字符串。
+
+6.通过指针计算字符串大小
+
+因为字符串最后一位是`\0`
+
+```c
+char hi[]= "hello world";
+char *p = NULL;
+for(p = hi;*p !='\0';p++);
+printf("字符串hi的长度是:%d\n"，p-hi);
+```
+
+7.指针作为传入参数
+
+```c
+#include <stdio.h>
+
+void func(int *a) {
+	printf("a指向空间中的值是:%d\n"，*a);
+}
+int main(void)
+{
+	int x= 100;
+	int *p = &x;
+	func(p);
+	return 0;
+}
+```
+
+a = p
+
+把p指向的数据传给函数使用 叫传入参数
+
+在函数中对传入的指针指向的数据进行操作 叫传出参数
+
+```
+传入参数（Input Parameter）
+
+传入参数一般是将一个变量的值或地址传递给函数，供函数使用。
+当传递一个指针（如 p）时，函数可以访问 p 指向的数据，但不会修改调用者的 p 本身，而是读取或使用 p 指向的内容。
+传出参数（Output Parameter）
+
+传出参数通常指在函数内部对传入的指针所指向的数据进行修改，以便调用者可以看到这些修改。
+当函数接受一个指针参数并对其指向的数据进行更改时，实际上是在对外部变量进行修改。这就叫传出参数，因为结果“输出”到了外部环境。
+```
+
+8.
+
+
+
+
+
