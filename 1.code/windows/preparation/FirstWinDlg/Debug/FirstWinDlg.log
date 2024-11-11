@@ -1,0 +1,14 @@
+﻿生成启动时间为 2024/11/10 20:02:46。
+     1>项目“D:\JOB_HUNTING\1.code\windows\preparation\FirstWinDlg\FirstWinDlg.vcxproj”在节点 2 上(Build 个目标)。
+     1>ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\FirstWinDlg.res" FirstWinDlg.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\JOB_HUNTING\1.code\windows\preparation\FirstWinDlg\Debug\FirstWinDlg.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\JOB_HUNTING\1.code\windows\preparation\FirstWinDlg\Debug\FirstWinDlg.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\JOB_HUNTING\1.code\windows\preparation\FirstWinDlg\Debug\FirstWinDlg.lib" /MACHINE:X86 Debug\FirstWinDlg.res
+         Debug\FirstWinDlg.obj
+         Debug\stdafx.obj
+         FirstWinDlg.vcxproj -> D:\JOB_HUNTING\1.code\windows\preparation\FirstWinDlg\Debug\FirstWinDlg.exe
+     1>已完成生成项目“D:\JOB_HUNTING\1.code\windows\preparation\FirstWinDlg\FirstWinDlg.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:00.94
