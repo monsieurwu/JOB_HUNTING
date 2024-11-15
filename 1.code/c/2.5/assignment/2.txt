@@ -1,0 +1,36 @@
+#include<stdio.h>
+
+void file_copy(char *dfile, char *sfile);
+
+
+int main() {
+    FILE *str1 = "1.txt";
+    FILE *str2 = "2.txt";
+    file_copy(str2, str1);
+    printf("File copied successfully.\n");
+
+    return 0;
+}
+
+void file_copy(char *dfile, char *sfile) {
+    FILE *src = fopen(sfile, "r+");
+    FILE *dest = fopen(dfile, "w+");
+    char ch;
+
+    if (src == NULL) {
+        printf("Error opening file %s\n", sfile);
+        return;
+    }
+    if (dest == NULL) {
+        printf("Error opening file %s\n", dfile);
+        fclose(src);
+        return;
+    }
+    while ((ch = fgetc(src))!= EOF) {
+        fputc(ch, dest);
+    }
+    fclose(src);
+    fclose(dest);
+    printf("File copied successfully.\n");
+}
+
