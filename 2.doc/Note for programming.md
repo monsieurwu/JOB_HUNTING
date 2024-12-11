@@ -90,5 +90,366 @@ int fibonacci(int n) {
 }
 ```
 
-#### 
+#### 11.指针指向的内容不可修改
+
+```
+const int *p = &x;
+int const *p = &x;
+```
+
+这两个是等价的 p指向的内容不可更改 但是p本身可以更改
+
+```
+int *const p;
+```
+
+这样才是指针本身不可更改
+
+```
+int const * const p = &x;
+```
+
+这样就是指针本身与指向内容均不可修改
+
+#### 12.指针指向数组做遍历
+
+```c
+int score[] = {2, 3, 4, 5};
+int *p = NULL;
+for(p = score; p < score+4; p++)
+{
+	printf("%d:%d\n", i++, *p);
+}
+```
+
+#### 13.数组作为函数参数
+
+```
+void calc_scores(int scores[]， int scores_length);
+void calc_scores(int scores[5]， int scores_length);
+void calc_scores(int *scores)， int scores_length;
+```
+
+这三种写法是等价的， 通常都会带上数组长度
+
+#### 14.用指针指向字符串
+
+```c
+char *str = "hello world";
+```
+
+用数组下标或是取值运算符都是可以的
+
+但不能对字符串进行修改 因为字符串是只读的常量
+
+```c
+const char *str = "hello world";
+```
+
+为避免意外修改字符串 导致crash 用const修饰
+
+#### 15.字符串常量和字符串变量
+
+```
+char *str = "hello world";
+char str[] = "hello world";
+```
+
+`char *str = "hello world";`：指针可以指向其他字符串，但内容不可变。
+
+`char str[] = "hello world";`：数组内容可修改，但数组本身不可指向其他字符串。
+
+#### 16.通过指针计算字符串大小
+
+因为字符串最后一位是`\0`
+
+```c
+char hi[]= "hello world";
+char *p = NULL;
+for(p = hi;*p !='\0';p++);
+printf("字符串hi的长度是:%d\n"，p-hi);
+```
+
+#### 17.指针作为传入参数
+
+```c
+#include <stdio.h>
+
+void func(int *a) {
+	printf("a指向空间中的值是:%d\n"，*a);
+}
+int main(void)
+{
+	int x= 100;
+	int *p = &x;
+	func(p);
+	return 0;
+}
+```
+
+a = p
+
+把p指向的数据传给函数使用 叫传入参数
+
+在函数中对传入的指针指向的数据进行操作 叫传出参数
+
+```
+传入参数（Input Parameter）
+
+传入参数一般是将一个变量的值或地址传递给函数，供函数使用。
+当传递一个指针（如 p）时，函数可以访问 p 指向的数据，但不会修改调用者的 p 本身，而是读取或使用 p 指向的内容。
+传出参数（Output Parameter）
+
+传出参数通常指在函数内部对传入的指针所指向的数据进行修改，以便调用者可以看到这些修改。
+当函数接受一个指针参数并对其指向的数据进行更改时，实际上是在对外部变量进行修改。这就叫传出参数，因为结果“输出”到了外部环境。
+```
+
+#### 18.时间处理
+
+```c
+#include<stdio.h>
+#include<time.h>
+
+int main() {
+    time_t seconds;
+    seconds = time(NULL);//取时间戳
+    printf("Current time: %ld \n", seconds);
+    
+    struct tm *p_time;
+    p_time = localtime(&seconds);//时间戳转为本地时间
+
+    printf("Current date: %d-%d-%d \n", 1900 + p_time->tm_year, 1 + p_time->tm_mon, p_time->tm_mday);
+    printf("Current time: %d:%d:%d \n", p_time->tm_hour, p_time->tm_min, p_time->tm_sec);
+ 
+    p_time = gmtime(&seconds);
+    printf("UTC date: %d-%d-%d \n", 1900 + p_time->tm_year, 1 + p_time->tm_mon, p_time->tm_mday);
+    printf("UTC time: %d:%d:%d \n", p_time->tm_hour, p_time->tm_min, p_time->tm_sec);
+    
+    return 0;
+}
+```
+
+
+
+#### 19.字符串转数字 & 数字转字符串
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+
+    char *str = NULL;
+    int value = 0;
+    
+    str = "-2002";
+    value = atoi(str);
+    printf("%d\n", value);
+}
+```
+
+如果要数字转字符串 用snprintf
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num = 12345;       // 要转换的数字
+    char str[20];          // 用于存储结果字符串，大小足够存放结果和终止符
+
+    // 使用 snprintf 将整数转换为字符串
+    snprintf(str, sizeof(str), "%d", num);
+
+    // 输出结果
+    printf("The string is: %s\n", str);
+
+    return 0;
+}
+```
+
+
+
+#### 20.用流进行文件读取
+
+字节读入写出
+
+```c
+#include <stdio.h>
+
+int main() {
+    int c;
+    FILE *stream;
+
+    // 打开 1.txt，读取并输出内容
+    if ((stream = fopen("1.txt", "a+")) == NULL) {
+        perror("Error opening 1.txt");
+        return 1;
+    }
+    printf("File 1.txt opened successfully.\n");
+
+    // 输出文件内容
+    while ((c = fgetc(stream)) != EOF) {
+        putchar(c);
+    }
+    puts("");
+
+    fclose(stream);
+
+    // 打开 2.txt，追加用户输入
+    if ((stream = fopen("2.txt", "a+")) == NULL) {
+        perror("Error opening 2.txt");
+        return 1;
+    }
+    printf("File 2.txt opened successfully.\n");
+    printf("Input content, press Ctrl+Z (Windows) or Ctrl+D (Unix) to finish:\n");
+
+    // 写入用户输入内容到文件
+    while ((c = getchar()) != EOF) {
+        fputc(c, stream);
+    }
+
+    fclose(stream);
+    return 0;
+}
+```
+
+字符串读入写出
+
+```c
+#include <stdio.h>
+
+int main() {
+    char str[4096] = {0};  // 调整缓冲区大小以容纳更多数据
+    FILE *stream;
+
+    // 打开 1.txt，读取并打印内容
+    if ((stream = fopen("1.txt", "a+")) == NULL) {
+        perror("Error opening file 1.txt");
+        return 1;
+    }
+    printf("File 1.txt opened successfully.\n");
+
+    while (fgets(str, sizeof(str), stream) != NULL) {
+        fputs(str, stdout);  // 输出文件内容
+    }
+    puts("");  // 换行
+
+    fclose(stream);
+
+    // 打开 2.txt，追加用户输入
+    if ((stream = fopen("2.txt", "a+")) == NULL) {
+        perror("Error opening file 2.txt");
+        return 1;
+    }
+    printf("File 2.txt opened successfully.\n");
+    printf("Input content, press Ctrl+Z (Windows) or Ctrl+D (Unix) to finish:\n");
+
+    while (fgets(str, sizeof(str), stdin) != NULL) {
+        fputs(str, stream);  // 将输入内容写入文件
+    }
+
+    fclose(stream);
+    return 0;
+}
+```
+
+**字符串读写是基于行的操作**，每次遇到换行符（或达到缓冲区限制）就完成一次读写，效率更高。
+
+#### 21.自己写strcpy
+
+```c
+#include<stdio.h>
+
+void strcpy(char *dest, char *src);
+
+
+int main() {
+    char str1[10] = "Hello";
+    char str2[10] = {0};
+
+    strcpy(str2, str1);
+    printf("str2: %s\n", str2);
+
+
+    return 0;
+}
+
+void strcpy(char *dest, char *src){
+
+    while (*src!= '\0'){
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    //这个while可以重写为：
+    //while (*dest++ = *src++);
+    //一句解决赋值和自加
+}
+```
+
+重点：
+
+根据 C 语言的运算符优先级：
+
+1. **`++`（后置自增）** 的优先级高于 **`*`（解引用）**。
+2. **`*` 和 `=`** 的执行顺序是从右到左（右结合性）。
+
+`*dest++ = *src++` 的执行顺序是：
+
+1. 解引用 `src`，读取当前值。
+2. 解引用 `dest`，准备写入。
+3. 将 `*src` 的值赋值给 `*dest`。
+4. 指针 `src` 和 `dest` 各自自增，移动到下一位置。
+
+
+
+#### 22.复制文件的函数
+
+```c
+#include<stdio.h>
+
+void file_copy(char *dfile, char *sfile);
+
+
+int main() {
+    char *str1 = "1.txt";
+    char *str2 = "2.txt";
+    file_copy(str2, str1);
+    printf("File copied successfully.\n");
+
+    return 0;
+}
+
+void file_copy(char *dfile, char *sfile) {
+    FILE *src = fopen(sfile, "r+");
+    FILE *dest = fopen(dfile, "w+");
+    char ch;
+
+    if (src == NULL) {
+        printf("Error opening file %s\n", sfile);
+        return;
+    }
+    if (dest == NULL) {
+        printf("Error opening file %s\n", dfile);
+        fclose(src);
+        return;
+    }
+    while ((ch = fgetc(src))!= EOF) {
+        fputc(ch, dest);
+    }
+    fclose(src);
+    fclose(dest);
+    
+}
+```
+
+重点：
+
+```c
+ while ((ch = fgetc(src)) != EOF) {
+        fputc(ch, dest);
+    }
+```
+
+
 
