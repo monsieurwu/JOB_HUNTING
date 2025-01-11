@@ -1,5 +1,5 @@
 #include "book_seq_list.h"
-
+//初始化顺序表
 int init_book_list(struct book_list *list)
 {
     if (list == NULL)
