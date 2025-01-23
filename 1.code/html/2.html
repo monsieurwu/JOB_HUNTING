@@ -1,0 +1,110 @@
+      
+<html>
+<head>
+    <title>我的第一个 HTML 页面</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+        hl {
+            text-align: center;
+            width: 300px; /* 内容宽度 */
+            padding: 10px; /* 内边距 */
+            border: 2px solid blue; /* 边框 */
+            margin: 20px; /* 外边距 */
+            background-color: lightblue; /* 背景色 */
+        }
+        p {
+            color: #FF5733; 
+            width: 400px;
+            padding: 15px;
+            border: 3px solid green;
+            margin: 30px;
+            background-color: lightgreen;
+        }
+
+        div {
+            color: rgb(0, 255, 0);
+        }
+
+        span {
+            color: rgb(0, 0, 255, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="color:blue;text-align: center;">欢迎来到我的网页</h1>
+    <p>这是一个简单的 HTML 示例页面。我们将在这里展示各种基础 HTML 标签的使用。</p>
+
+    <h2>图片展示</h2>
+    <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt="示例图片" />
+
+    <h2>常见列表</h2>
+    <h3>有序列表</h3>
+    <ol>
+        <li>第一项</li>
+        <li>第二项</li>
+        <li>第三项</li>
+    </ol>
+
+    <h3>无序列表</h3>
+    <ul>
+        <li>项目一</li>
+        <li>项目二</li>
+        <li>项目三</li>
+    </ul>
+
+    <h2>表格展示</h2>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>职业</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>28</td>
+            <td>工程师</td>
+        </tr>
+        <tr>
+            <td>李四</td>
+            <td>32</td>
+            <td>设计师</td>
+        </tr>
+        <tr>
+            <td>王五</td>
+            <td>25</td>
+            <td>学生</td>
+        </tr>
+    </table>
+
+    <h2>超链接</h2>
+    <p>访问 <a href="https://www.keyanchengguo.com">【科岩成果】</a> 了解更多信息。</p>
+
+    <h2>用户输入</h2>
+    <form action="/submit" method="post">
+        <label for="username">用户名：</label>
+        <input type="text" id="username" name="username" placeholder="请输入用户名" required>
+        <br><br>
+        
+        <label for="password">密码：</label>
+        <input type="password" id="password" name="password" placeholder="请输入密码" required>
+        <br><br>
+
+        <label>选择兴趣：</label>
+        <input type="checkbox" id="coding" name="interests" value="coding">
+        <label for="coding">编程</label>
+        <input type="checkbox" id="design" name="interests" value="design">
+        <label for="design">设计</label>
+        <input type="checkbox" id="music" name="interests" value="music">
+        <label for="music">音乐</label>
+        <br><br>
+
+        <button type="submit">提交</button>
+    </form>
+
+</body>
+</html>
+
+    
