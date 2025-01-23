@@ -4,12 +4,14 @@
 #include <arpa/inet.h>
 
 int main() {
-    int server_sockfd;
+    int server_sockfd, client_sockfd;
 
-    struct sockaddr_in server_addr;
+    struct sockaddr_in server_addr, client_addr;
+
     char* server_ip = "0.0.0.0";
     unsigned short server_port = 0;
-    
+    socklen_t client_addr_len = sizeof(client_addr);
+
     server_sockfd == socket(AF_INET, SOCK_STREAM, 0);
 
     if (server_sockfd == -1) {
@@ -42,8 +44,20 @@ int main() {
     printf("listen to server %s:%u successfully!\n", server_ip, server_port);
 
 
+    client_sockfd = accept(server_sockfd, (struct sockaddr *)&client_addr, &client_addr_len);
+    if (client_sockfd == -1) {
+        printf("Failed to accept client\n");
+        close(server_sockfd);
+        return -1;
+    }
+    printf("Accept client %s:%u successfully!\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
 
-
+    // 关闭 Client Socket
+    if (close(client_sockfd) == -1) {
+        printf("Failed to close client socket\n");
+        return -1;
+    }
+    printf("client socket [%d] closed successfully\n", client_sockfd);
 
 
     // 关闭 Socket
