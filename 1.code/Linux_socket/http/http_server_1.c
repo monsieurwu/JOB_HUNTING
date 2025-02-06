@@ -96,7 +96,7 @@ void send_html(int client_sockfd)
     // 响应体
     const char *body = "<html>"
                         "<head>\r\n"
-                            "<title>我的第一个网页hhhh</title>\r\n"
+                            "<title>我的第一个网页</title>\r\n"
                         "</head>\r\n"
                         "<body>\r\n"
                             "<h1>欢迎来到我的网页</h1>\r\n"

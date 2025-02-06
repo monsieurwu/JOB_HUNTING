@@ -1,0 +1,205 @@
+      
+<html>
+    <head>
+        <title>我的第一个 HTML 页面</title>
+        <style>
+            /* 设置整体页面的背景颜色、字体样式和行高 */
+            body {
+                background-color: #f4f4f4; /* 浅灰色背景 */
+                font-family: Arial, sans-serif; /* 使用 Arial 字体 */
+                line-height: 1.6; /* 设置文字行高 */
+                padding: 20px; /* 内边距 */
+            }
+    
+            /* 标题的样式，居中显示并设置颜色 */
+            h1, h2, h3 {
+                text-align: center; /* 居中对齐 */
+                color: #333; /* 深灰色文字 */
+            }
+    
+            /* 段落、列表、表格和表单的样式，统一设置宽度、背景颜色和阴影 */
+            p, ol, ul, table, form {
+                max-width: 800px; /* 最大宽度 800px，限制内容宽度 */
+                margin: 0 auto 20px; /* 上下间距，水平居中 */
+                padding: 10px; /* 内边距 */
+                background-color: #fff; /* 白色背景 */
+                border-radius: 8px; /* 圆角效果 */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+            }
+    
+            /* 设置段落文字的字体大小 */
+            p {
+                font-size: 18px; /* 字体大小 */
+            }
+    
+            /* 图片的样式，居中显示，限制最大宽度 */
+            img {
+                display: block; /* 设置为块级元素 */
+                max-width: 300px; /* 图片最大宽度为300像素 */
+                height: auto; /* 等比缩放 */
+                margin: 0 auto; /* 居中 */
+                padding: 10px; /* 内边距 */
+            }
+    
+            /* 列表的样式，使用浅灰色文字 */
+            ol, ul {
+                padding: 0 20px; /* 左右内边距 */
+                color: #555; /* 浅灰色文字 */
+            }
+    
+            /* 列表项的样式，增加下方的间距 */
+            li {
+                margin-bottom: 8px; /* 底部间距 */
+            }
+    
+            /* 表格的样式，设定宽度、边框合并和上方间距 */
+            table {
+                width: 100%; /* 表格宽度占满容器 */
+                border-collapse: collapse; /* 合并边框 */
+                margin-top: 10px; /* 上方间距 */
+            }
+    
+            /* 表头的样式，深色背景和白色文字 */
+            th {
+                background-color: #333; /* 深灰色背景 */
+                color: #fff; /* 白色文字 */
+                padding: 12px; /* 内边距 */
+                text-align: left; /* 左对齐 */
+            }
+    
+            /* 表格内容的样式，浅灰色背景 */
+            td {
+                background-color: #f9f9f9; /* 浅灰色背景 */
+                padding: 12px; /* 内边距 */
+                text-align: left; /* 左对齐 */
+                border: 1px solid #ddd; /* 边框 */
+            }
+    
+            /* 超链接的样式，蓝色文字，无下划线 */
+            a {
+                color: #3498db; /* 蓝色 */
+                text-decoration: none; /* 去掉下划线 */
+            }
+    
+            /* 鼠标悬停在超链接上的效果，显示下划线 */
+            a:hover {
+                text-decoration: underline; /* 下划线 */
+            }
+    
+            /* 表单样式，左对齐 */
+            form {
+                text-align: left; /* 左对齐 */
+                padding: 20px; /* 内边距 */
+            }
+    
+            /* 文本框的样式，占满宽度，圆角边框 */
+            input[type="text"], input[type="password"] {
+                width: 100%; /* 占满父容器宽度 */
+                padding: 10px; /* 内边距 */
+                margin: 10px 0; /* 上下间距 */
+                border: 1px solid #ccc; /* 边框 */
+                border-radius: 4px; /* 圆角 */
+                box-sizing: border-box; /* 包括内边距 */
+            }
+    
+            /* 标签的样式，加粗并且与输入框分开 */
+            label {
+                font-weight: bold; /* 加粗 */
+                margin-bottom: 5px; /* 底部间距 */
+                display: inline-block; /* 块状显示 */
+            }
+    
+            /* 复选框的样式，右侧留出一点间距 */
+            input[type="checkbox"] {
+                margin-right: 5px; /* 右侧间距 */
+            }
+    
+            /* 提交按钮的样式，蓝色背景和白色文字 */
+            button {
+                background-color: #3498db; /* 蓝色背景 */
+                color: #fff; /* 白色文字 */
+                padding: 10px 15px; /* 内边距 */
+                border: none; /* 去掉边框 */
+                border-radius: 4px; /* 圆角 */
+                cursor: pointer; /* 鼠标变成手形 */
+                font-size: 16px; /* 字体大小 */
+            }
+    
+            /* 鼠标悬停在按钮上的效果，变深色 */
+            button:hover {
+                background-color: #2980b9; /* 深蓝色背景 */
+            }
+        </style>
+    
+    </head>
+    <body>
+        <h1>欢迎来到我的网页</h1>
+        <p>这是一个简单的 HTML 示例页面。我们将在这里展示各种基础 HTML 标签的使用。</p>
+    
+        <h2>图片展示</h2>
+        <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt="示例图片" />
+    
+        <h2>常见列表</h2>
+        <h3>有序列表</h3>
+        <ol>
+            <li>第一项</li>
+            <li>第二项</li>
+            <li>第三项</li>
+        </ol>
+    
+        <h3>无序列表</h3>
+        <ul>
+            <li>项目一</li>
+            <li>项目二</li>
+            <li>项目三</li>
+        </ul>
+    
+        <h2>表格展示</h2>
+        <table>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>职业</th>
+            </tr>
+            <tr>
+                <td>张三</td>
+                <td>28</td>
+                <td>工程师</td>
+            </tr>
+            <tr>
+                <td>李四</td>
+                <td>32</td>
+                <td>设计师</td>
+            </tr>
+            <tr>
+                <td>王五</td>
+                <td>25</td>
+                <td>学生</td>
+            </tr>
+        </table>
+    
+        <h2>超链接</h2>
+        <p>访问 <a href="https://www.keyanchengguo.com">【科岩成果】</a> 了解更多信息。</p>
+    
+        <h2>用户输入</h2>
+        <form action="/submit" method="post">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username" placeholder="请输入用户名" required>
+            
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" placeholder="请输入密码" required>
+    
+            <label>选择兴趣：</label>
+            <input type="checkbox" id="coding" name="interests" value="coding">
+            <label for="coding">编程</label>
+            <input type="checkbox" id="design" name="interests" value="design">
+            <label for="design">设计</label>
+            <input type="checkbox" id="music" name="interests" value="music">
+            <label for="music">音乐</label>
+    
+            <button type="submit">提交</button>
+        </form>
+    </body>
+    </html>
+    
+        

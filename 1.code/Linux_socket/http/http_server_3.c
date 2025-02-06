@@ -93,18 +93,24 @@ void send_file(int client_sockfd, const char *filename)
 {
     char buf[4096];
     FILE* stream = NULL;
+
+    printf("opening %s\n", filename);
+    // 打开本地文件
+    if ((stream = fopen(filename, "r")) == NULL) {
+        printf("%s open failed\n", filename);
+        send_404(client_sockfd); // 读取文件失败，返回页面不存在
+        return ;
+    }
     
-    sprintf(buf, "HTTP/1.0 400 OK\r\n");
+    sprintf(buf, "HTTP/1.0 200 OK\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
     sprintf(buf, "Content-Type: text/html; charset=utf-8\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
     sprintf(buf, "\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
-    // 打开本地文件
-    if ((stream = fopen(filename, "r")) == NULL) {
-        printf("%s open failed\n", filename);
-        return ;
-    }
+    
+
+   
     // 从指定的流 stream 读取一行, 并向buf中追加一个'\0'字符
     while (fgets(buf, sizeof(buf), stream) != NULL) {
         // 按行发送文件内容
@@ -130,15 +136,25 @@ void handle_client(int client_sockfd)
         recvbuf[bytes_recv] = '\0';
         printf("receive [%zd] bytes data:\n%s", bytes_recv, recvbuf);
 
-        // 解析 HTTP 请求行，/或者 /index.html 都返回 index.html
-        if (strncmp(recvbuf, "GET / HTTP/1.1", 14) == 0 || 
-            strncmp(recvbuf, "GET /index.html HTTP/1.1", 24) == 0) {
-            send_file(client_sockfd, "index.html");
+        // 解析 HTTP 请求行
+        char method[16] = {0}, path[256] = {0};
+        char filename[256];
+        sscanf(recvbuf, "%s %s", method, path);
+        
+        // 只处理 GET 请求
+        if (strcmp(method, "GET") == 0) {
+            // 去掉开头的 '/'，得到文件名
+            if (strcmp(path, "/") == 0) {
+                strcpy(filename, "index.html"); // 如果是根路径，默认返回 index.html
+            } else {
+                strcpy(filename, &path[1]); // 去掉 '/'
+            }
+
+            // 尝试发送文件
+            send_file(client_sockfd, filename);
         } else { // 否则返回页面不存在
             send_404(client_sockfd);
         }
-        
-        
     }
 }
 
@@ -151,8 +167,9 @@ void send_404(int client_sockfd)
     send(client_sockfd, buf, strlen(buf), 0);
     sprintf(buf, "Content-Type: text/html\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
+    
     sprintf(buf, "\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
-    sprintf(buf, "<html><body><h1>404 Not Found hahahahah</h1></body></html>");
+    sprintf(buf, "<html><body><h1>404 Not Found</h1></body></html>");
     send(client_sockfd, buf, strlen(buf), 0);
 }

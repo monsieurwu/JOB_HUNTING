@@ -1,3 +1,4 @@
+      
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -6,13 +7,90 @@
 
 #define PORT 8080
 #define BUFFER_SIZE 1024
+// http 状态码 404 表示未找到请求的页面
+void send_404(int client_sockfd)
+{
+    char buf[4096];
 
-void handle_client(int client_sockfd);
-void send_html(int client_sockfd);
-void send_404(int client_sockfd);
+    sprintf(buf, "HTTP/1.1 404 Not Found\r\n");
+    send(client_sockfd, buf, strlen(buf), 0);
+    sprintf(buf, "Content-Type: text/html\r\n");
+    send(client_sockfd, buf, strlen(buf), 0);
+    sprintf(buf, "\r\n");
+    send(client_sockfd, buf, strlen(buf), 0);
+    sprintf(buf, "<html><body><h1>404 Not Found</h1></body></html>");
+    send(client_sockfd, buf, strlen(buf), 0);
+}
 
-int main() {
+void send_file(int client_sockfd, const char *filename)
+{
+    char buf[4096];
+    FILE* stream = NULL;
 
+    printf("opening %s\n", filename);
+    // 打开本地文件
+    if ((stream = fopen(filename, "r")) == NULL) {
+        printf("%s open failed\n", filename);
+        send_404(client_sockfd); // 读取文件失败，返回页面不存在
+        return ;
+    }
+    sprintf(buf, "HTTP/1.0 200 OK\r\n");
+    send(client_sockfd, buf, strlen(buf), 0);
+    sprintf(buf, "Content-Type: text/html; charset=utf-8\r\n");
+    send(client_sockfd, buf, strlen(buf), 0);
+    sprintf(buf, "\r\n");
+    send(client_sockfd, buf, strlen(buf), 0);
+
+    // 从指定的流 stream 读取一行, 并向buf中追加一个'\0'字符
+    while (fgets(buf, sizeof(buf), stream) != NULL) {
+        // 按行发送文件内容
+        send(client_sockfd, buf, strlen(buf), 0);
+    }
+
+    fclose(stream);
+}
+
+void handle_client(int client_sockfd)
+{
+    char recvbuf[BUFFER_SIZE];
+    ssize_t bytes_recv;
+    
+    // 阻塞接收数据
+    bytes_recv = recv(client_sockfd, recvbuf, sizeof(recvbuf) - 1, 0);
+
+    if (bytes_recv < 0) {
+        printf("recv failed, [%d], %s\n", errno, strerror(errno));
+        return;
+    } else if (bytes_recv == 0) {
+        printf("tcp closed\n");
+        return;
+    }
+    recvbuf[bytes_recv] = '\0';
+    printf("receive [%zd] bytes data:\n%s", bytes_recv, recvbuf);
+    
+    // 解析 HTTP 请求行
+    char method[16] = {0}, path[256] = {0};
+    char filename[256];
+    sscanf(recvbuf, "%s %s", method, path);
+
+    // 只处理 GET 请求
+    if (strcmp(method, "GET") == 0) {
+        // 去掉开头的 '/'，得到文件名
+        if (strcmp(path, "/") == 0) {
+            strcpy(filename, "index.html"); // 如果是根路径，默认返回 index.html
+        } else {
+            strcpy(filename, &path[1]); // 去掉 '/'
+        }
+
+        // 尝试发送文件
+        send_file(client_sockfd, filename);
+    } else { // 否则返回页面不存在
+        send_404(client_sockfd);
+    }
+}
+
+int main(void)
+{
     int server_sockfd, client_sockfd;
     struct sockaddr_in server_addr, client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
@@ -21,6 +99,7 @@ int main() {
 
     // 创建一个 TCP IPv4 套接字
     server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    
     if (server_sockfd == -1) {
         printf("Failed to create server socket, [%d], %s\n", errno, strerror(errno));
         return -1;
@@ -41,7 +120,6 @@ int main() {
     server_addr.sin_addr.s_addr = INADDR_ANY;
     // 套接字的端口号，需要转换为网络序
     server_addr.sin_port = htons(PORT);
-
     // 将套接字绑定到指定的地址和端口
     if (bind(server_sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
         printf("Failed to bind, [%d], %s\n", errno, strerror(errno));
@@ -57,8 +135,8 @@ int main() {
         return -1;
     }
     printf("listen to server %s:%u successfully!\n", "0.0.0.0", PORT);
-    while(1){
 
+    while (1) {
         // 阻塞接收客户端连接
         client_sockfd = accept(server_sockfd, (struct sockaddr*)&client_addr, &client_addr_len);
         if (client_sockfd < 0) {
@@ -68,15 +146,12 @@ int main() {
         // 当有客户端发起连接时，退出阻塞
         printf("client socket [%d], ip: %s, port: %d connect successfully\n", 
             client_sockfd, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
-        
+    
         // 处理客户端请求
         handle_client(client_sockfd);
-
+        
         // 关闭客户端连接
-        if(close(client_sockfd) == -1) {
-            printf("Failed to close client socket, [%d], %s\n", errno, strerror(errno));
-            return -1;
-        }
+        close(client_sockfd);
     }
 
     // 关闭服务端 Socket
@@ -85,74 +160,7 @@ int main() {
         return -1;
     }
     printf("server socket [%d] closed successfully\n", server_sockfd);
-
     return 0;
 }
 
-void send_file(int client_sockfd, const char *filename)
-{
-    char buf[4096];
-    FILE* stream = NULL;
     
-    sprintf(buf, "HTTP/1.0 400 OK\r\n");
-    send(client_sockfd, buf, strlen(buf), 0);
-    sprintf(buf, "Content-Type: text/html; charset=utf-8\r\n");
-    send(client_sockfd, buf, strlen(buf), 0);
-    sprintf(buf, "\r\n");
-    send(client_sockfd, buf, strlen(buf), 0);
-    // 打开本地文件
-    if ((stream = fopen(filename, "r")) == NULL) {
-        printf("%s open failed\n", filename);
-        return ;
-    }
-    // 从指定的流 stream 读取一行, 并向buf中追加一个'\0'字符
-    while (fgets(buf, sizeof(buf), stream) != NULL) {
-        // 按行发送文件内容
-        send(client_sockfd, buf, strlen(buf), 0);
-    }
-
-    fclose(stream);
-}
-
-void handle_client(int client_sockfd)
-{
-    char recvbuf[BUFFER_SIZE];
-    ssize_t bytes_recv;
-    
-    // 阻塞接收数据
-    bytes_recv = recv(client_sockfd, recvbuf, sizeof(recvbuf) - 1, 0);
-
-    if (bytes_recv < 0) {
-        printf("recv failed, [%d], %s\n", errno, strerror(errno));
-    } else if (bytes_recv == 0) {
-        printf("tcp closed\n");
-    } else {
-        recvbuf[bytes_recv] = '\0';
-        printf("receive [%zd] bytes data:\n%s", bytes_recv, recvbuf);
-
-        // 解析 HTTP 请求行，/或者 /index.html 都返回 index.html
-        if (strncmp(recvbuf, "GET / HTTP/1.1", 14) == 0 || 
-            strncmp(recvbuf, "GET /index.html HTTP/1.1", 24) == 0) {
-            send_file(client_sockfd, "index.html");
-        } else { // 否则返回页面不存在
-            send_404(client_sockfd);
-        }
-        
-        
-    }
-}
-
-// http 状态码 404 表示未找到请求的页面
-void send_404(int client_sockfd)
-{
-    char buf[4096];
-
-    sprintf(buf, "HTTP/1.1 404 Not Found\r\n");
-    send(client_sockfd, buf, strlen(buf), 0);
-    sprintf(buf, "Content-Type: text/html\r\n");
-    send(client_sockfd, buf, strlen(buf), 0);
-    sprintf(buf, "\r\n");
-    send(client_sockfd, buf, strlen(buf), 0);
-    sprintf(buf, "<html><body><h1>404 Not Found hahahahah</h1></body></html>");
-    send(client_sockfd, buf, strlen(buf), 0);
-}

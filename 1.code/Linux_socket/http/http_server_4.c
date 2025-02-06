@@ -10,6 +10,7 @@
 void handle_client(int client_sockfd);
 void send_html(int client_sockfd);
 void send_404(int client_sockfd);
+void handle_post(int client_sockfd, char *query);
 
 int main() {
 
@@ -93,18 +94,24 @@ void send_file(int client_sockfd, const char *filename)
 {
     char buf[4096];
     FILE* stream = NULL;
+
+    printf("opening %s\n", filename);
+    // 打开本地文件
+    if ((stream = fopen(filename, "r")) == NULL) {
+        printf("%s open failed\n", filename);
+        send_404(client_sockfd); // 读取文件失败，返回页面不存在
+        return ;
+    }
     
-    sprintf(buf, "HTTP/1.0 400 OK\r\n");
+    sprintf(buf, "HTTP/1.0 200 OK\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
     sprintf(buf, "Content-Type: text/html; charset=utf-8\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
     sprintf(buf, "\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
-    // 打开本地文件
-    if ((stream = fopen(filename, "r")) == NULL) {
-        printf("%s open failed\n", filename);
-        return ;
-    }
+    
+
+   
     // 从指定的流 stream 读取一行, 并向buf中追加一个'\0'字符
     while (fgets(buf, sizeof(buf), stream) != NULL) {
         // 按行发送文件内容
@@ -130,15 +137,43 @@ void handle_client(int client_sockfd)
         recvbuf[bytes_recv] = '\0';
         printf("receive [%zd] bytes data:\n%s", bytes_recv, recvbuf);
 
-        // 解析 HTTP 请求行，/或者 /index.html 都返回 index.html
-        if (strncmp(recvbuf, "GET / HTTP/1.1", 14) == 0 || 
-            strncmp(recvbuf, "GET /index.html HTTP/1.1", 24) == 0) {
-            send_file(client_sockfd, "index.html");
-        } else { // 否则返回页面不存在
+        // 解析 HTTP 请求行
+        char method[16] = {0}, path[256] = {0};
+        char filename[256];
+        sscanf(recvbuf, "%s %s", method, path);
+        
+        // 只处理 GET 请求
+        if (strncmp(method, "GET", 4) == 0) {
+            printf("Received a GET request\n");
+            // 去掉开头的 '/'，得到文件名
+            if (strcmp(path, "/") == 0) {
+                strcpy(filename, "index.html"); // 如果是根路径，默认返回 index.html
+            }
+            else {
+                strcpy(filename, &path[1]); // 去掉 '/'
+            }
+
+        // 尝试发送文件
+        send_file(client_sockfd, filename);
+    }else if (strncmp(method, "POST", 5) == 0) {
+            printf("\nReceived a POST request\n");
+            // 查找 Content-Length 获取 POST 数据的长度
+            char *content_length_str = strstr(recvbuf, "Content-Length: ");
+            int content_length = 0;
+            if (content_length_str) {
+                sscanf(content_length_str, "Content-Length: %d", &content_length);
+            }
+            // 获取 POST 数据主体部分
+            char *body = strstr(recvbuf, "\r\n\r\n");
+            if (body) {
+                body += 4; // 跳过头部和空行的分隔
+                printf("POST body: %.*s\n", content_length, body);
+            }
+            // 处理 POST 请求的逻辑
+            handle_post(client_sockfd, body);
+        }else { // 否则返回页面不存在
             send_404(client_sockfd);
         }
-        
-        
     }
 }
 
@@ -151,8 +186,58 @@ void send_404(int client_sockfd)
     send(client_sockfd, buf, strlen(buf), 0);
     sprintf(buf, "Content-Type: text/html\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
+    
     sprintf(buf, "\r\n");
     send(client_sockfd, buf, strlen(buf), 0);
-    sprintf(buf, "<html><body><h1>404 Not Found hahahahah</h1></body></html>");
+    sprintf(buf, "<html><body><h1>404 Not Found</h1></body></html>");
     send(client_sockfd, buf, strlen(buf), 0);
+}
+
+
+void handle_post(int client_sockfd, char *query)
+{
+    // 响应行和响应头
+    const char *header = "HTTP/1.1 200 OK\r\n"
+        "Content-Type: text/html; charset=utf-8\r\n\r\n";
+    send(client_sockfd, header, strlen(header), 0);
+
+    char username[32] = { 0 }, password[32] = { 0 }, interests[32] = { 0 };
+    char key[32], value[32];
+    // 按 & 分割字符串
+    // 此处 query 是字符串：username=kieran&password=123456&interests=coding
+    char *token = strtok(query, "&");
+    while (token) {
+        memset(key, 0, sizeof(key));
+        memset(value, 0, sizeof(value));
+        // 解析 xxx=xxx 格式内容
+        sscanf(token, "%[^=]=%s", key, value);
+
+        // 根据 key 将值赋给相应的变量
+        if (strcmp(key, "username") == 0) {
+            strncpy(username, value, sizeof(username) - 1);
+        }
+        else if (strcmp(key, "password") == 0) {
+            strncpy(password, value, sizeof(password) - 1);
+        }
+        else if (strcmp(key, "interests") == 0) {
+            strncpy(interests, value, sizeof(interests) - 1);
+        }
+
+        token = strtok(NULL, "&");  // 继续解析下一个键值对
+    }
+
+    // 响应体
+    char html_response[1024];
+    snprintf(html_response, sizeof(html_response),
+        "<html>\n"
+        "<head><title>用户输入</title></head>\n"
+        "<body>\n"
+        "<h1>用户输入</h1>\n"
+        "<p><strong>用户名：</strong> %s</p>\n"
+        "<p><strong>密码：</strong> %s</p>\n"
+        "<p><strong>兴趣：</strong> %s</p>\n"
+        "</body>\n"
+        "</html>\n", username, password, interests);
+
+    send(client_sockfd, html_response, strlen(html_response), 0);
 }
