@@ -8,11 +8,11 @@ int main() {
 
     struct sockaddr_in server_addr, client_addr;
 
-    char* server_ip = "0.0.0.0";
-    unsigned short server_port = 0;
+    char* server_ip = "10.0.2.15";
+    unsigned short server_port = 8080;
     socklen_t client_addr_len = sizeof(client_addr);
 
-    server_sockfd == socket(AF_INET, SOCK_STREAM, 0);
+    server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
     if (server_sockfd == -1) {
         printf("Failed to create server socket\n");
