@@ -7,10 +7,10 @@ int main() {
     int server_sockfd;
 
     struct sockaddr_in server_addr;
-    char* server_ip = "0.0.0.0";
-    unsigned short server_port = 0;
+    char* server_ip = "192.168.0.127";
+    unsigned short server_port = 8080;
     
-    server_sockfd == socket(AF_INET, SOCK_STREAM, 0);
+    server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
     if (server_sockfd == -1) {
         printf("Failed to create server socket\n");

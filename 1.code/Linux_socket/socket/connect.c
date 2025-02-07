@@ -9,8 +9,8 @@ int main() {
     int client_sockfd;
 
     struct sockaddr_in server_addr;
-    char* server_ip = "10.45.98.44";
-    unsigned short server_port = 8081;
+    char* server_ip = "192.168.0.127";
+    unsigned short server_port = 8080;
 
     // 创建一个 TCP IPv4 套接字
     client_sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -22,7 +22,7 @@ int main() {
     printf("file descriptor of server socket is [%d]\n", client_sockfd);
 
 
-        // 套接字的地址协议族, AF_INET表示 IPv4 地址
+    // 套接字的地址协议族, AF_INET表示 IPv4 地址
     server_addr.sin_family = AF_INET;
     // 套接字的IP地址，将点分十进制字符串转成网络序整型
     server_addr.sin_addr.s_addr = inet_addr(server_ip);
