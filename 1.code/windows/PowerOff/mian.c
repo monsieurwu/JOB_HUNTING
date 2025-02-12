@@ -32,6 +32,7 @@ REPEAT:
         else {
             MessageBox(NULL, TEXT("准备关机....."), TEXT("晚安"), MB_OK);
             MessageBox(NULL, TEXT("哈哈，吓坏了吧？\n这次不开玩笑了"), TEXT("再来一次"), MB_OK);
+			MessageBox(NULL, TEXT("完了 等着关机吧....."), TEXT("晚安"), MB_OK);
             //powerOffWindows();
         }
     }

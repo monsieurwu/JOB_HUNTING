@@ -1,15 +1,15 @@
-﻿Build started 2024/8/9 22:49:49.
-     1>Project "D:\woowoowoo\keyan_2\windows\PowerOff\PowerOff.vcxproj" on node 2 (Build target(s)).
+﻿生成启动时间为 2025/2/9 18:27:18。
+     1>项目“D:\JOB_HUNTING\1.code\windows\PowerOff\PowerOff.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt mian.c
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt mian.c
          mian.c
-     1>d:\woowoowoo\keyan_2\windows\poweroff\mian.c(12): warning C4047: 'function': 'DWORD' differs in levels of indirection from 'void *'
-     1>d:\woowoowoo\keyan_2\windows\poweroff\mian.c(12): warning C4024: 'AdjustTokenPrivileges': different types for formal and actual parameter 4
+     1>d:\job_hunting\1.code\windows\poweroff\mian.c(12): warning C4047: “函数”:“DWORD”与“void *”的间接级别不同
+     1>d:\job_hunting\1.code\windows\poweroff\mian.c(12): warning C4024: “AdjustTokenPrivileges”: 形参和实参 4 的类型不同
        Link:
-         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.lib" /MACHINE:X86 Debug\mian.obj
-         PowerOff.vcxproj -> D:\woowoowoo\keyan_2\windows\PowerOff\Debug\PowerOff.exe
-     1>Done Building Project "D:\woowoowoo\keyan_2\windows\PowerOff\PowerOff.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\JOB_HUNTING\1.code\windows\PowerOff\Debug\PowerOff.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\JOB_HUNTING\1.code\windows\PowerOff\Debug\PowerOff.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\JOB_HUNTING\1.code\windows\PowerOff\Debug\PowerOff.lib" /MACHINE:X86 Debug\mian.obj
+         PowerOff.vcxproj -> D:\JOB_HUNTING\1.code\windows\PowerOff\Debug\PowerOff.exe
+     1>已完成生成项目“D:\JOB_HUNTING\1.code\windows\PowerOff\PowerOff.vcxproj”(Build 个目标)的操作。
 
-Build succeeded.
+已成功生成。
 
-Time Elapsed 00:00:00.82
+已用时间 00:00:00.88

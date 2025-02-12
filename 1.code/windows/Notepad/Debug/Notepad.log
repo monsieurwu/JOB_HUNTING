@@ -1,0 +1,28 @@
+﻿生成启动时间为 2025/2/12 6:59:10。
+     1>项目“D:\JOB_HUNTING\1.code\windows\Notepad\Notepad.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\Notepad.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Command.cpp
+         Command.cpp
+     1>d:\job_hunting\1.code\windows\notepad\command.cpp(1): warning C4627: “#include "Command.h"”: 在查找预编译头使用时跳过
+         d:\job_hunting\1.code\windows\notepad\command.cpp(1): note: 将指令添加到“stdafx.h”或重新生成预编译头
+     1>d:\job_hunting\1.code\windows\notepad\command.cpp(35): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+     1>d:\job_hunting\1.code\windows\notepad\command.cpp(77): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_wstring.h(121): note: 参见“wcscpy”的声明
+     1>d:\job_hunting\1.code\windows\notepad\command.cpp(81): warning C4996: '_swprintf': This function or variable may be unsafe. Consider using _swprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_wstdio.h(1444): note: 参见“_swprintf”的声明
+     1>d:\job_hunting\1.code\windows\notepad\command.cpp(97): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+     1>d:\job_hunting\1.code\windows\notepad\command.cpp(129): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_wstring.h(101): note: 参见“wcscat”的声明
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\JOB_HUNTING\1.code\windows\Notepad\Debug\Notepad.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\JOB_HUNTING\1.code\windows\Notepad\Debug\Notepad.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\JOB_HUNTING\1.code\windows\Notepad\Debug\Notepad.lib" /MACHINE:X86 Debug\Notepad.res
+         Debug\Command.obj
+         Debug\Notepad.obj
+         Debug\stdafx.obj
+         Notepad.vcxproj -> D:\JOB_HUNTING\1.code\windows\Notepad\Debug\Notepad.exe
+     1>已完成生成项目“D:\JOB_HUNTING\1.code\windows\Notepad\Notepad.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:00.71
