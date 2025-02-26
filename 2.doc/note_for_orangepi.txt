@@ -1,0 +1,93 @@
+
+### 1. 连接香橙派到电脑
+首先，使用网线将香橙派连接到电脑。确保香橙派已经启动。
+
+### 2. 查找香橙派的 IP 地址
+在电脑上打开终端（Windows 可以使用命令提示符或 PowerShell），输入以下命令来查找香橙派的 IP 地址：
+
+```bash
+arp -a
+```
+
+这将列出所有连接到网络的设备。查找与香橙派相关的 IP 地址（通常是一个类似于 `192.168.x.x` 的地址）。
+
+### 3. 通过 SSH 登录香橙派
+使用找到的 IP 地址通过 SSH 登录到香橙派。默认用户名通常是 `orangepi` 或 `root`，密码通常是 `orangepi` 或 `123456`。
+
+```bash
+ssh orangepi@<香橙派的IP地址>
+```
+
+例如：
+
+```bash
+ssh orangepi@192.168.1.100
+```
+
+### 4. 配置 WiFi 连接
+登录后，使用 `nmcli` 命令来配置 WiFi 连接。
+
+#### 4.1 查看网络设备
+首先，查看可用的网络设备：
+
+```bash
+sudo nmcli dev
+```
+
+#### 4.2 启用 WiFi
+确保 WiFi 已启用：
+
+```bash
+sudo nmcli r wifi on
+```
+
+#### 4.3 扫描可用的 WiFi 网络
+扫描附近的 WiFi 网络：
+
+```bash
+sudo nmcli dev wifi
+```
+
+#### 4.4 连接 WiFi
+选择你要连接的 WiFi 网络，并使用以下命令连接：
+
+```bash
+sudo nmcli dev wifi connect <WiFi名称> password <WiFi密码>
+```
+
+例如：
+
+```bash
+sudo nmcli dev wifi connect MyWiFi password MyPassword
+```
+
+### 5. 验证连接
+连接成功后，你可以使用以下命令来验证连接状态：
+
+```bash
+nmcli connection show
+```
+
+或者使用 `ping` 命令测试网络连接：
+
+```bash
+ping google.com
+```
+
+### 6. 断开 SSH 连接
+完成配置后，你可以通过以下命令断开 SSH 连接：
+
+```bash
+exit
+```
+
+### 7. 断开网线连接
+现在你已经成功配置了 WiFi 连接，可以断开网线，香橙派将通过 WiFi 连接到网络。
+
+### 注意事项
+- 确保你输入的 WiFi 名称和密码是正确的。
+- 如果遇到问题，可以尝试重启网络服务：
+
+  ```bash
+  sudo systemctl restart NetworkManager
+  ```
